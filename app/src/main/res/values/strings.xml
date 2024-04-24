@@ -4,9 +4,11 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Premier Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
+    <string name="third_fragment_label">TP 1</string>
     <string name="next">Suivant</string>
     <string name="previous">Précédent</string>
     <string name="button_console">Message Console</string>
+    <string name="button_activity">Nouvelle Activité</string>
 
     <string name="lorem_ipsum">
         Bonjour le monde !

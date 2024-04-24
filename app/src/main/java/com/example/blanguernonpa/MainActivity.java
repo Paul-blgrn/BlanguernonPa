@@ -1,5 +1,6 @@
 package com.example.blanguernonpa;
 
+import android.content.Intent;
 import android.media.session.PlaybackState;
 import android.os.Bundle;
 
@@ -56,6 +57,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("BUTTON_CONSOLE", "L'utilisateur a cliqué sur le bouton !");
+            }
+        }));
+
+        // Button to new activity
+        Button new_activity = (Button) findViewById(R.id.button_third);
+        new_activity.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View w) {
+                String tempstring = "test";
+                Intent TP1Intent = new Intent();
+                TP1Intent.setAction(Intent.ACTION_SEND);
+                TP1Intent.setType("text/plain");
+                TP1Intent.putExtra(Intent.EXTRA_TEXT, tempstring);
+                startActivity(TP1Intent);
+                Log.d("BUTTON_ACTIVITY", "L'utilisateur a cliqué sur le bouton !");
             }
         }));
     }

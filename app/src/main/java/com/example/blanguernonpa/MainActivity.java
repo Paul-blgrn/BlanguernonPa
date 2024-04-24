@@ -1,5 +1,6 @@
 package com.example.blanguernonpa;
 
+import android.media.session.PlaybackState;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -18,6 +19,7 @@ import com.example.blanguernonpa.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +47,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Log.i("log_test", "ceci est un log test !");
+        // Custom console message on start
+        Log.i("log_test", "Ceci est un log test !");
+
+        // Custom button listener
+        Button console_button = (Button) findViewById(R.id.button_console);
+        console_button.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("BUTTON_CONSOLE", "L'utilisateur a cliqué sur le bouton !");
+            }
+        }));
     }
 
     @Override

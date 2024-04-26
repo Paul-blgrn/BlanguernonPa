@@ -24,6 +24,7 @@ public class MainActivity2 extends AppCompatActivity {
     private ActivityMain2Binding binding;
 
     protected Integer result;
+    private int attempt = 0;
 
     static int getRandomNumber(int max, int min) {
         return (int)((Math.random() * (max - min)) + min);
@@ -31,6 +32,12 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void makeToast(String str) {
         Toast.makeText(MainActivity2.this, str, Toast.LENGTH_SHORT).show();
+    }
+
+
+    public int setAttempts(int attempts) {
+        attempt = attempts;
+        return (int)(attempts);
     }
 
 
@@ -47,8 +54,11 @@ public class MainActivity2 extends AppCompatActivity {
         int min = 1;
         int max = 100;
         result = getRandomNumber(min, max);
+        setAttempts(0);
 
         Button buttonSubmit = (Button) findViewById(R.id.button_submit_number);
+        EditText guessedNumberId = (EditText) findViewById(R.id.editTextNumber);
+
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,18 +67,27 @@ public class MainActivity2 extends AppCompatActivity {
                     String Player_1 = extras.getString("player1");
                     String Player_2 = extras.getString("player2");
 
-                    EditText guessedNumberId = (EditText) findViewById(R.id.editTextNumber);
                     Integer guessedNumber = Integer.parseInt(guessedNumberId.getText().toString());
 
-                    if (guessedNumber < result) {
-                        makeToast("C'est plus");
-                    } else if (guessedNumber > result) {
-                        makeToast("C'est moins");
-                    } else {
-                        makeToast("Félicitations !" + "Tu as trouvé le bon chiffre !");
-                    }
+                    if(guessedNumber != null){
+                        if (guessedNumber < result) {
+                            makeToast("C'est plus");
+                            attempt++;
+                        } else if (guessedNumber > result) {
+                            makeToast("C'est moins");
+                            attempt++;
+                        } else {
+                            if (attempt == 0) {
+                                makeToast("Félicitations !" + "Tu as trouvé le bon chiffre du premier coup !");
+                                setAttempts(0);
+                            } else {
+                                makeToast("Bravo !" + "Tu as trouvé le bon chiffre en " + attempt + " coups !");
+                                setAttempts(0);
+                            }
+                        }
 
-                    Log.i("RESULT : ", Player_1 + "," + Player_2 + "," + "number is: " + result + " guess: " + guessedNumber);
+                        Log.i("RESULT : ", Player_1 + "," + Player_2 + "," + "number is: " + result + " guess: " + guessedNumber + " tentatives: " + attempt);
+                    }
 
                 }
             }

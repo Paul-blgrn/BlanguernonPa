@@ -1,47 +1,43 @@
 package com.example.blanguernonpa;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.util.Log;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.blanguernonpa.databinding.ActivityMain2Binding;
 import com.example.blanguernonpa.databinding.ActivityMainBinding;
 
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
-
-import model.Player;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
-
-    public Player player1 = new Player();
-    public Player player2 = new Player();
+    private ActivityMain2Binding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        com.example.blanguernonpa.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main2);
+
+        binding = ActivityMain2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.toolbar);
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("msg");
+            Log.i("Pseudo: ", value);
+        }
     }
 
     @Override

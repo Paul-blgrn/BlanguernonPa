@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.example.blanguernonpa.FirstFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/player1"
         tools:layout="@layout/fragment_first">
 
         <action
@@ -18,11 +18,10 @@
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.example.blanguernonpa.SecondFragment"
-        android:label="@string/second_fragment_label"
+        android:label="@string/player2"
         tools:layout="@layout/fragment_second">
-
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_SecondFragment_to_mainActivity2"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>

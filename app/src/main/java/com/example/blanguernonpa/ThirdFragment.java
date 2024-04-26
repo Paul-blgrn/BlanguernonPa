@@ -6,9 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.blanguernonpa.databinding.FragmentFirstBinding;
 import com.example.blanguernonpa.databinding.FragmentThirdBinding;
@@ -16,6 +19,8 @@ import com.example.blanguernonpa.databinding.FragmentThirdBinding;
 public class ThirdFragment extends Fragment {
 
     private FragmentThirdBinding binding;
+
+
 
     @Override
     public View onCreateView(
@@ -29,13 +34,6 @@ public class ThirdFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        binding.buttonSubmit.setOnClickListener(v -> {
-            MainActivity2 activity2 = (MainActivity2) getActivity();
-            if (activity2 != null) {
-
-            }
-        });
     }
 
     @Override

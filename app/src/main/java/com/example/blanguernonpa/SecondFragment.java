@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -48,7 +49,8 @@ public class SecondFragment extends Fragment {
                 activity.player2.setLevel(level);
             }
             Intent intent = new Intent(view.getContext(), MainActivity2.class);
-            intent.putExtra("msg", activity.player1.getPlayer() + "," + activity.player2.getPlayer());
+            intent.putExtra("player1", activity.player1.getPlayer());
+            intent.putExtra("player2", activity.player2.getPlayer());
             view.getContext().startActivity(intent);
         });
     }

@@ -4,24 +4,35 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.blanguernonpa.databinding.ActivityMain2Binding;
-import com.example.blanguernonpa.databinding.ActivityMainBinding;
 
 public class MainActivity2 extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMain2Binding binding;
+
+    protected Integer result;
+
+    static int getRandomNumber(int max, int min) {
+        return (int)((Math.random() * (max - min)) + min);
+    }
+
+    public void makeToast(String str) {
+        Toast.makeText(MainActivity2.this, str, Toast.LENGTH_SHORT).show();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +44,36 @@ public class MainActivity2 extends AppCompatActivity {
         binding = ActivityMain2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String value = extras.getString("msg");
-            Log.i("Pseudo: ", value);
-        }
+        int min = 1;
+        int max = 100;
+        result = getRandomNumber(min, max);
+
+        Button buttonSubmit = (Button) findViewById(R.id.button_submit_number);
+        buttonSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle extras = getIntent().getExtras();
+                if (extras != null) {
+                    String Player_1 = extras.getString("player1");
+                    String Player_2 = extras.getString("player2");
+
+                    EditText guessedNumberId = (EditText) findViewById(R.id.editTextNumber);
+                    Integer guessedNumber = Integer.parseInt(guessedNumberId.getText().toString());
+
+                    if (guessedNumber < result) {
+                        makeToast("C'est plus");
+                    } else if (guessedNumber > result) {
+                        makeToast("C'est moins");
+                    } else {
+                        makeToast("Félicitations !" + "Tu as trouvé le bon chiffre !");
+                    }
+
+                    Log.i("RESULT : ", Player_1 + "," + Player_2 + "," + "number is: " + result + " guess: " + guessedNumber);
+
+                }
+            }
+        });
+
     }
 
     @Override
